@@ -15,8 +15,8 @@
 
 Alg        |  Worst  |  Avg  |  Best  |  Space  |  Stable  |
 :---------:|:-------:|:-----:|:------:|:-------:|:--------:|
-Insertion  |  O($n^2$) |O($n^2$) | O(N)   |   O(1)  |----------|
-Selection  |  O($n^2$) |O($n^2$) | O($n^2$) |   O(1)  |----------|
+Insertion  |  O($n^2$) |O(n<sup>2</sup>) | O(N)   |   O(1)  |----------|
+Selection  |  O($n^2$) |O(n^2$) | O($n^2$) |   O(1)  |----------|
 Bubble     |  O($n^2$) |O($n^2$) | O(n)   |   O(1)  |----------|
 Merge      |  nlogn  | nlogn | nlogn  |   O(n)  |----------|
 Quick      |  O($n^2$) | nlogn | nlogn  | O(logn) |----------|
