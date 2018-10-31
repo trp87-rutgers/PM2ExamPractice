@@ -6,6 +6,9 @@ along with a brief test suite.
 import functools
 import time
 
+from structures import MinimumHeap # My data structure implimentations
+
+
 def swap(container, i, j):
     """ A generic swap function for indexable containers. """
     container[i], container[j] = container[j], container[i]
@@ -204,10 +207,23 @@ def three_way_quick_sort(container):
     return container
 
 
+def heap_sort(container):
+    """
+    An implimentation of heap sort using a min heap implimentation.
+    """
+
+    heap = MinimumHeap()
+
+    for item in container:
+        heap.insert(item)
+
+    return [heap.del_min() for _ in range(heap.data_count)]
+
+
 if __name__ == "__main__":
     from random import shuffle
 
-    my_list = [x for x in range(10000)]
+    my_list = [x for x in range(10)]
 
     shuffle(my_list)
 
@@ -217,6 +233,7 @@ if __name__ == "__main__":
         merge_sort,
         quick_sort,
         three_way_quick_sort,
+        heap_sort,
         sorted,
     )
 
@@ -224,4 +241,5 @@ if __name__ == "__main__":
 
     for timed_func in (timeit(func) for func in sorting_functions):
         result = timed_func(list(my_list))  # Run the timed function on a copy
+        print(result)
         assert is_sorted(result)
