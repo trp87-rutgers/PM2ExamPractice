@@ -10,16 +10,20 @@
 ### Searches:
 * Binary		
 
+### Data Structures
+* Queue - FIFO (First in First Out)
+* Stack - LIFO (Last in First Out)
+* Heap - Can be min or max, its a tree
 
 
 
 Alg        |  Worst  |  Avg  |  Best  |  Space  |  Stable  |
 :---------:|:-------:|:-----:|:------:|:-------:|:--------:|
-Insertion  |  O(n<sup>2</sup>) |O(n<sup>2</sup>) | O(N)   |   O(1)  |----------|
-Selection  |  O(n<sup>2</sup>) |O(n<sup>2</sup>) | O(n<sup>2</sup>) |   O(1)  |----------|
-Bubble     |  O(n<sup>2</sup>) |O(n<sup>2</sup>) | O(n)   |   O(1)  |----------|
-Merge      |  nlogn  | nlogn | nlogn  |   O(n)  |----------|
-Quick      |  O(n<sup>2</sup>) | nlogn | nlogn  | O(logn) |----------|
-3-way Quick|---------|-------|--------|---------|----------|
-Heap       |  nlogn  | nlogn | nlogn--|   O(1)  |----------|
+Insertion  |  O(n<sup>2</sup>) |O(n<sup>2</sup>) | O(n)   |   O(1)  |  Yes  |
+Selection  |  O(n<sup>2</sup>) |O(n<sup>2</sup>) | O(n<sup>2</sup>) |   O(1)  |  No  |
+Bubble     |  O(n<sup>2</sup>) |O(n<sup>2</sup>) | O(n)   |   O(1)  |  Yes  |
+Merge      |  nlogn  | nlogn | nlogn  |   O(n)  | Yes |
+Quick      |  O(n<sup>2</sup>) | nlogn | nlogn  | O(logn) |  No  |
+3-way Quick|---------|-------|--------| O(logn) |  No  |
+Heap       |  nlogn  | nlogn | nlogn--|   O(1)  |  No  |
 Binary     |  O(n)   |  logn |--------|---------|----------|
