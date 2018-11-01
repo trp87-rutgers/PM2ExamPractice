@@ -59,6 +59,64 @@ class MinimumHeap():
         return maximum_value
 
 
+class Node():
+    def __init__(self, value):
+        self.value = value
+        self.next_node = None
+
+
+class Stack():
+    """
+    Implimentation of a FILO (LIFO) structure.
+    """
+    def __init__(self):
+        self.head = None
+
+    def add(self, value):
+        new_node = Node(value)
+        new_node.next_node = self.head
+
+        self.head = new_node
+
+    def remove(self):
+        tmp_node = self.head
+
+        if tmp_node is not None:
+            self.head = tmp_node.next_node 
+        else:
+            return None
+
+        return tmp_node.value
+
+
+class Queue():
+    """
+    Implimentation of a FIFO (LILO) structure.
+    """
+    def __init__(self):
+        self.head = None
+        self.tail = None
+
+    def add(self, value):
+        new_node = Node(value)
+
+        if self.tail is not None:
+            self.tail.next_node = new_node
+            self.tail = new_node
+        else:
+            self.head = self.tail = new_node
+
+    def remove(self):
+        if self.head is None:
+            return None
+
+        tmp_node = self.head
+
+        self.head = tmp_node.next_node
+
+        return tmp_node.value
+
+
 if __name__ == "__main__":
     from random import shuffle
     
@@ -71,10 +129,28 @@ if __name__ == "__main__":
     # Test MinimumHeap
     my_min_heap = MinimumHeap()
 
-    for value in test_values:
-        my_min_heap.insert(value)
+    for x in test_values:
+        my_min_heap.insert(x)
 
     print("Min Heap Contents:", my_min_heap.data)
 
     assert my_min_heap.data_count == len(test_values)
     assert my_min_heap.del_min() == min(test_values)
+
+    # Test Stack
+    my_stack = Stack()
+
+    for x in test_values:
+        my_stack.add(x)
+
+    for y in reversed(test_values):
+        assert my_stack.remove() == y
+
+    # Test Queue
+    my_queue = Queue()
+
+    for x in test_values:
+        my_queue.add(x)
+
+    for y in test_values:
+        assert my_queue.remove () == y

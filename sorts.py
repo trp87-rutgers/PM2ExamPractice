@@ -79,46 +79,42 @@ def selection_sort(container):
 
 def merge_sort(container):
     """
-    An implimentation of merge sort.
+    An implimentation of merge sort using Python slices.
 
     Runs in O(n*log(n)) time for all cases.
     """
-    def merge(source, auxilary, low, middle, high):
-        # Copy the old array
-        for k in range(low, high):
-            auxilary[k] = source[k]
+    if len(container) < 2:
+        return container
 
-        i, j = low, middle + 1
+    m = len(container) // 2 # int division cause if its odd
 
-        # Begin sorting the array
-        for k in range(low, high + 1):
-            if i > middle:
-                source[k] = auxilary[j]
-                j += 1
-            elif j > high:
-                source[k] = auxilary[i]
-                i += 1
-            elif auxilary[j] < auxilary[i]:
-                source[k] = auxilary[j]
-                j += 1
-            else:
-                source[k] = auxilary[i]
-                i += 1
+    left, right = container[:m], container[m:]
 
-    def sort(source, auxilary, low, high):
-        if high <= low:
-            return
+    merge_sort(left)
+    merge_sort(right)
 
-        middle = low + (high - low) // 2
+    i, j, k = 0, 0, 0
 
-        sort(source, auxilary, low, middle)
-        sort(source, auxilary, middle + 1, high)
+    # Inserts smallest into the array and keeps goin till one runs out
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            container[k] = left[i]
+            i += 1
+        else:
+            container[k] = right[j]
+            j += 1
+        k += 1
 
-        merge(source, auxilary, low, middle, high)
+    # Finish off the array that had more elements left
+    while i < len(left):
+        container[k] = left[i]
+        i += 1
+        k += 1
 
-    auxilary = [0 for _ in container]
-
-    sort(container, auxilary, 0, len(container) - 1)
+    while j < len(right):
+        container[k] = right[j]
+        j += 1
+        k += 1
 
     return container
 
@@ -164,6 +160,7 @@ def quick_sort(container):
             return
 
         j = partition(source, low, high)
+
         sort(source, low, j - 1)
         sort(source, j+1, high)
 
@@ -223,7 +220,7 @@ def heap_sort(container):
 if __name__ == "__main__":
     from random import shuffle
 
-    my_list = [x for x in range(10)]
+    my_list = [x for x in range(10000)]
 
     shuffle(my_list)
 
@@ -241,5 +238,4 @@ if __name__ == "__main__":
 
     for timed_func in (timeit(func) for func in sorting_functions):
         result = timed_func(list(my_list))  # Run the timed function on a copy
-        print(result)
         assert is_sorted(result)
