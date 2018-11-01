@@ -59,7 +59,7 @@ class MinimumHeap():
         return maximum_value
 
 
-class Node():
+class LinkedListNode():
     def __init__(self, value):
         self.value = value
         self.next_node = None
@@ -73,7 +73,7 @@ class Stack():
         self.head = None
 
     def add(self, value):
-        new_node = Node(value)
+        new_node = LinkedListNode(value)
         new_node.next_node = self.head
 
         self.head = new_node
@@ -98,7 +98,7 @@ class Queue():
         self.tail = None
 
     def add(self, value):
-        new_node = Node(value)
+        new_node = LinkedListNode(value)
 
         if self.tail is not None:
             self.tail.next_node = new_node
@@ -115,6 +115,47 @@ class Queue():
         self.head = tmp_node.next_node
 
         return tmp_node.value
+
+
+class BinaryTreeNode():
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+
+class BinarySearchTree():
+    def __init__(self):
+        self.root = None
+
+    def put(self, value):
+        def _put(node, node_value):
+            if node is None:
+                return BinaryTreeNode(node_value)
+
+            if value < node.value:
+                node.left = _put(node.left, node_value)
+            elif value > node.value:
+                node.right = _put(node.right, node_value)
+            else:
+                node.value = node_value
+
+            return node
+
+        self.root = _put(self.root, value)
+
+    def get(self, value):
+        tmp_node = self.root
+
+        while tmp_node is not None:
+            if tmp_node.value < value:
+                tmp_node = tmp_node.left
+            elif tmp_node.value > value:
+                tmp_node = tmp_node.right
+            else:
+                return tmp_node.value
+        else:
+            return None
 
 
 if __name__ == "__main__":
