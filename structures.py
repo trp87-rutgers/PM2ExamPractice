@@ -59,6 +59,105 @@ class MinimumHeap():
         return maximum_value
 
 
+class LinkedListNode():
+    def __init__(self, value):
+        self.value = value
+        self.next_node = None
+
+
+class Stack():
+    """
+    Implimentation of a FILO (LIFO) structure.
+    """
+    def __init__(self):
+        self.head = None
+
+    def add(self, value):
+        new_node = LinkedListNode(value)
+        new_node.next_node = self.head
+
+        self.head = new_node
+
+    def remove(self):
+        tmp_node = self.head
+
+        if tmp_node is not None:
+            self.head = tmp_node.next_node 
+        else:
+            return None
+
+        return tmp_node.value
+
+
+class Queue():
+    """
+    Implimentation of a FIFO (LILO) structure.
+    """
+    def __init__(self):
+        self.head = None
+        self.tail = None
+
+    def add(self, value):
+        new_node = LinkedListNode(value)
+
+        if self.tail is not None:
+            self.tail.next_node = new_node
+            self.tail = new_node
+        else:
+            self.head = self.tail = new_node
+
+    def remove(self):
+        if self.head is None:
+            return None
+
+        tmp_node = self.head
+
+        self.head = tmp_node.next_node
+
+        return tmp_node.value
+
+
+class BinaryTreeNode():
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+
+class BinarySearchTree():
+    def __init__(self):
+        self.root = None
+
+    def put(self, value):
+        def _put(node, node_value):
+            if node is None:
+                return BinaryTreeNode(node_value)
+
+            if value < node.value:
+                node.left = _put(node.left, node_value)
+            elif value > node.value:
+                node.right = _put(node.right, node_value)
+            else:
+                node.value = node_value
+
+            return node
+
+        self.root = _put(self.root, value)
+
+    def get(self, value):
+        tmp_node = self.root
+
+        while tmp_node is not None:
+            if tmp_node.value < value:
+                tmp_node = tmp_node.left
+            elif tmp_node.value > value:
+                tmp_node = tmp_node.right
+            else:
+                return tmp_node.value
+        else:
+            return None
+
+
 if __name__ == "__main__":
     from random import shuffle
     
@@ -71,10 +170,28 @@ if __name__ == "__main__":
     # Test MinimumHeap
     my_min_heap = MinimumHeap()
 
-    for value in test_values:
-        my_min_heap.insert(value)
+    for x in test_values:
+        my_min_heap.insert(x)
 
     print("Min Heap Contents:", my_min_heap.data)
 
     assert my_min_heap.data_count == len(test_values)
     assert my_min_heap.del_min() == min(test_values)
+
+    # Test Stack
+    my_stack = Stack()
+
+    for x in test_values:
+        my_stack.add(x)
+
+    for y in reversed(test_values):
+        assert my_stack.remove() == y
+
+    # Test Queue
+    my_queue = Queue()
+
+    for x in test_values:
+        my_queue.add(x)
+
+    for y in test_values:
+        assert my_queue.remove () == y
