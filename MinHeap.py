@@ -44,35 +44,6 @@ class MinHeap:
     def prnt(self):
         for num in self.list:
             print(num)
-    
-    '''def sink(kid1] < self.list[pos]:
-                    self.swapself, pos):
-        swapped = False
-        while not swapped:
-            kid1 = self.getKid(pos)
-            kid2 = self.getKid(pos, 1)
-            
-            if kid1 < len(self.list) and kid2 < len(self.list): # if both kids exist
-                
-                if self.list[kid1] < self.list[pos]:
-                    print("HERE")
-                    self.swap(pos, kid1)
-                    pos = kid1
-                    swapped = True
-                if self.list[kid2] < self.list[pos]:
-                    print("Maybe Here")
-                    self.swap(pos, kid2)
-                    pos = kid2
-                    swapped = True
-            elif kid1 < len(self.list): # if only kid1 exitsts
-                if self.list[(pos, kid1)
-                    pos = kid1
-                    swapped = True
-            elif kid2 < len(self.list): # if only kid 2 exists
-                if self.list[kid2] < self.list[pos]:
-                    self.swap(pos, kid2)
-                    pos = kid2
-                    swapped = True'''
                     
     def sink(self, pos):
         if pos > len(self.list):
