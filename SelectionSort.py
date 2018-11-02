@@ -12,6 +12,7 @@ Stability: No
 
 def Swap(arr, i, j):
     arr[i], arr[j] = arr[j], arr[i]
+    print(arr)
 
 def SelectionSort(arr):
     """
@@ -25,6 +26,7 @@ def SelectionSort(arr):
         for j in range(i+1, len(arr)): # Find min
             if arr[minIn] > arr[j]:
                 minIn = j # got the min
+        print(arr)
         Swap(arr, i, minIn)
         
 def main():

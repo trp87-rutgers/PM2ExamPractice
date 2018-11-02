@@ -24,6 +24,10 @@ Selection  |  O(n<sup>2</sup>) |O(n<sup>2</sup>) | O(n<sup>2</sup>) |   O(1)  | 
 Bubble     |  O(n<sup>2</sup>) |O(n<sup>2</sup>) | O(n)   |   O(1)  |  Yes  |
 Merge      |  nlogn  | nlogn | nlogn  |   O(n)  | Yes |
 Quick      |  O(n<sup>2</sup>) | nlogn | nlogn  | O(logn) |  No  |
-3-way Quick| O(n<sup>2</sup> | O(nlogn) | O(nlogn) | O(logn) |  No  |
-Heap       |  nlogn  | nlogn | nlogn--|   O(1)  |  No  |
+3-way Quick| n<sup>2</sup> | nlogn | nlogn | O(logn) |  No  |
+Heap       |  nlogn  | nlogn | nlogn |   O(1)  |  No  |
 Binary     |  O(n)   |  logn |--------|---------|----------|
+
+### Built in Functions to Know
+* .sorted - 
+* sort()

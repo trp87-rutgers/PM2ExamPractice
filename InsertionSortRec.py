@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Tim Petersen
-10/30/18
+10/31/18
 Insertion Sort Recursively
 Best Case: O(n)
 Average Case: O(n^2)
