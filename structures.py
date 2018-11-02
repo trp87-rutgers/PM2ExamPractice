@@ -72,13 +72,23 @@ class Stack():
     def __init__(self):
         self.head = None
 
-    def add(self, value):
+    def __len__(self):
+        tmp_node = self.head
+        count = 0
+
+        while tmp_node is not None:
+            tmp_node = tmp_node.next_node
+            count += 1
+
+        return count
+
+    def push(self, value):
         new_node = LinkedListNode(value)
         new_node.next_node = self.head
 
         self.head = new_node
 
-    def remove(self):
+    def pop(self):
         tmp_node = self.head
 
         if tmp_node is not None:
@@ -97,7 +107,7 @@ class Queue():
         self.head = None
         self.tail = None
 
-    def add(self, value):
+    def enqueue(self, value):
         new_node = LinkedListNode(value)
 
         if self.tail is not None:
@@ -106,7 +116,7 @@ class Queue():
         else:
             self.head = self.tail = new_node
 
-    def remove(self):
+    def dequeue(self):
         if self.head is None:
             return None
 
@@ -115,6 +125,26 @@ class Queue():
         self.head = tmp_node.next_node
 
         return tmp_node.value
+
+
+class StackQueue():
+    """
+    An implimentation of a queue using two stacks.
+    
+    Note: Never do this in the real world! :)
+    """
+    def __init__(self):
+        self.in_stack, self.out_stack = Stack(), Stack()
+
+    def enqueue(self, value):
+        self.in_stack.push(value)
+
+    def dequeue(self):
+        if not len(self.out_stack):
+            while len(self.in_stack):
+                self.out_stack.push(self.in_stack.pop())
+
+        return self.out_stack.pop()
 
 
 class BinaryTreeNode():
@@ -145,6 +175,12 @@ class BinarySearchTree():
         self.root = _put(self.root, value)
 
     def get(self, value):
+        """
+        This method is just a modification of binary search.
+        Rather than moving the left and right indexes of the
+        container, we move left or right in the tree, essentially
+        obtaining the same goal.
+        """
         tmp_node = self.root
 
         while tmp_node is not None:
@@ -156,6 +192,25 @@ class BinarySearchTree():
                 return tmp_node.value
         else:
             return None
+
+    def rotate_left(self, node):
+        right_node = node.right
+
+        node.right = right_node.left
+
+        right_node.left = node
+
+        return right_node
+
+    def rotate_right(self, node):
+        """ Just swap the words "left" and "right" :) """
+        left_node = node.left
+
+        node.left = left_node.right
+
+        left_node.right = node
+
+        return left_node
 
 
 if __name__ == "__main__":
@@ -182,16 +237,25 @@ if __name__ == "__main__":
     my_stack = Stack()
 
     for x in test_values:
-        my_stack.add(x)
+        my_stack.push(x)
 
     for y in reversed(test_values):
-        assert my_stack.remove() == y
+        assert my_stack.pop() == y
 
     # Test Queue
     my_queue = Queue()
 
     for x in test_values:
-        my_queue.add(x)
+        my_queue.enqueue(x)
 
     for y in test_values:
-        assert my_queue.remove () == y
+        assert my_queue.dequeue() == y
+
+    # Test StackQueue
+    my_stack_queue = StackQueue()
+
+    for x in test_values:
+        my_stack_queue.enqueue(x)
+
+    for y in test_values:
+        assert my_stack_queue.dequeue() == y

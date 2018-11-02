@@ -220,18 +220,18 @@ def heap_sort(container):
 if __name__ == "__main__":
     from random import shuffle
 
-    my_list = [x for x in range(10000)]
+    my_list = [x for x in range(20)]
 
     shuffle(my_list)
 
     sorting_functions = (
-        insertion_sort,
-        selection_sort,
+        # insertion_sort,
+        # selection_sort,
         merge_sort,
-        quick_sort,
-        three_way_quick_sort,
-        heap_sort,
-        sorted,
+        # quick_sort,
+        # three_way_quick_sort,
+        # heap_sort,
+        # sorted,
     )
 
     print("Running {} sorting algorithms!".format(len(sorting_functions)))
